@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amin Barja | Creative Web Developer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #020617;
+      --bg-secondary: #020617;
+      --accent1: #7c3aed;
+      --accent2: #38bdf8;
+      --accent3: #22d3ee;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: radial-gradient(circle at top, #020617, #000);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* BACKGROUND GLOW */
+    .glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(124,58,237,0.35), transparent 70%);
+      filter: blur(120px);
+      top: -200px;
+      left: -200px;
+      z-index: -1;
+    }
+
+    .glow.blue {
+      background: radial-gradient(circle, rgba(56,189,248,0.35), transparent 70%);
+      top: auto;
+      bottom: -200px;
+      left: auto;
+      right: -200px;
+    }
+
+    /* NAVBAR */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 22px 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(2, 6, 23, 0.55);
+      backdrop-filter: blur(18px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      background: linear-gradient(90deg, var(--accent2), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav a {
+      margin-left: 36px;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent2), var(--accent3));
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--text-main);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 180px 30px 140px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 90px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 82px;
+      line-height: 1.02;
+      margin-bottom: 30px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(120deg, var(--accent1), var(--accent2), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 40px rgba(56,189,248,0.35);
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: var(--text-muted);
+      max-width: 640px;
+      line-height: 1.9;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .hero p::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -18px;
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent2), var(--accent3));
+      border-radius: 999px;
+    }
+    
+
+    .actions {
+      display: flex;
+      gap: 26px;
+    }
+
+    .btn {
+      padding: 18px 44px;
+      border-radius: 999px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      color: #020617;
+      box-shadow: 0 30px 60px rgba(124,58,237,0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 40px 80px rgba(56,189,248,0.5);
+    }
+
+    .btn-secondary {
+      border: 2px solid var(--accent2);
+      color: var(--accent2);
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent2);
+      color: #020617;
+      transform: translateY(-8px) scale(1.02);
+    }
+
+    /* GLASS CARD */
+    .glass {
+      background: linear-gradient(160deg, rgba(255,255,255,0.15), rgba(255,255,255,0.03));
+      border-radius: 30px;
+      padding: 50px;
+      backdrop-filter: blur(22px);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.12);
+      position: relative;
+    }
+
+    .glass::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 30px;
+      background: linear-gradient(120deg, var(--accent1), var(--accent2), var(--accent3));
+      opacity: 0.25;
+      z-index: -1;
+    }
+
+    .glass h3 {
+      font-size: 26px;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+
+    .glass p {
+      font-size: 17px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .separator {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+      margin: 34px 0;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 60px 20px;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      header {
+        padding: 18px 30px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 150px;
+      }
+
+      .actions {
+        justify-content: center;
+      }
+    }
+  /* SMOOTH SCROLL */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* FLOATING SHAPES */
+    
+
+    .shape.one {
+      width: 420px;
+      height: 420px;
+      background: #7c3aed;
+      top: 20%;
+      left: -150px;
+    }
+
+    .shape.two {
+      width: 500px;
+      height: 500px;
+      background: #38bdf8;
+      bottom: -200px;
+      right: -200px;
+      animation-delay: 4s;
+    }
+
+    .shape.three {
+      width: 300px;
+      height: 300px;
+      background: #22d3ee;
+      top: -150px;
+      right: 20%;
+      animation-delay: 8s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-80px); }
+    }
+
+    /* PROFILE PHOTO */
+    
+
+    
+
+    /* PROJECTS */
+    .projects {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 30px;
+    }
+
+    .projects h2 {
+      font-size: 48px;
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+
+    .project-card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 40px;
+      backdrop-filter: blur(16px);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .project-card:hover {
+      transform: translateY(-12px) rotateX(6deg) rotateY(-6deg);
+      box-shadow: 0 40px 80px rgba(56,189,248,0.4);
+    }
+
+    .project-card h3 {
+      margin-bottom: 14px;
+      font-size: 22px;
+    }
+
+    .project-card p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 900px) {
+      .projects h2 { font-size: 36px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  
+
+  <div class="glow"></div>
+  <div class="glow blue"></div>
+
+  <header>
+    <div class="logo">Amin Barja </div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Projects</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div>
+      
+      <h1>Hi, I'm <span>Amin Barja</span><br>Future Creative Developer</h1>
+      <p>
+        I'm a young developer focused on crafting clean, modern, and visually impressive
+        websites while mastering HTML and CSS step by step.
+      </p>
+      <div class="actions">
+        <a href="#" class="btn btn-primary">Explore My Work</a>
+        <a href="#" class="btn btn-secondary">About Me</a>
+      </div>
+    </div>
+
+    <div class="glass">
+      <h3>ABOUT ME</h3>
+      <p>
+        I love creating stylish user interfaces and learning how top-tier
+        websites are designed. I improve my skills every single day.
+      </p>
+
+      <div class="separator"></div>
+
+      <h3>SKILLS I AM LEARNING</h3>
+      <p>
+        HTML • CSS • Responsive Design • Modern UI • Layouts • Animations
+      </p>
+    </div>
+  </section>
+
+  <section class="skills" id="skills">
+    <div class="project-grid">
+    <h2>My Skills</h2>
+    <div class="project-grid">
+      <div class="project-card"><h3>🌐 HTML</h3><p>Semantic structure, clean markup, accessibility basics.</p></div>
+      <div class="project-card"><h3>🎨 CSS</h3><p>Flexbox, Grid, animations, gradients, glassmorphism.</p></div>
+      <div class="project-card"><h3>📱 Responsive Design</h3><p>Mobile-first layouts that adapt to all screens.</p></div>
+      <div class="project-card"><h3>✨ UI Design</h3><p>Modern, clean, professional user interfaces.</p></div>
+    </div>
+  </section>
+
+  <section class="projects" id="projects">
+    <h2>My Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>Personal Portfolio</h3>
+        <p>A modern portfolio website built using pure HTML and CSS.</p>
+      </div>
+      <div class="project-card">
+        <h3>Practice Landing Page</h3>
+        <p>A clean landing page focusing on layout, typography, and colors.</p>
+      </div>
+      <div class="project-card">
+        <h3>Future Project</h3>
+        <p>More advanced projects coming as I continue learning web development.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" style="max-width:900px;margin:0 auto;padding:120px 30px;text-align:center;">
+    <h2 style="font-size:48px;margin-bottom:30px;">Contact Me</h2>
+    <p style="color:var(--text-muted);margin-bottom:50px;font-size:18px;">Want to talk or see my work? Reach out!</p>
+    <a href="mailto:example@email.com" class="btn btn-primary">Send Email</a>
+  </section>
+
+  <footer>
+    © 2025 Amin Barja · Designed with HTML & CSS
+  </footer>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
