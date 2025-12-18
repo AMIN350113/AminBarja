@@ -157,7 +157,7 @@
       background: linear-gradient(90deg, var(--accent2), var(--accent3));
       border-radius: 999px;
     }
-    
+    }
 
     .actions {
       display: flex;
@@ -351,6 +351,114 @@
       .projects h2 { font-size: 36px; }
     }
 
+    /* TITLE GLOW EFFECT */
+    .hero h1 span {
+      text-shadow: 0 0 20px rgba(124,58,237,0.6), 0 0 40px rgba(56,189,248,0.6);
+    }
+
+    /* SOFT CARD HOVER */
+    .glass:hover {
+      transform: translateY(-10px);
+      transition: 0.4s;
+      box-shadow: 0 50px 80px rgba(124,58,237,0.3);
+    }
+
+    /* SECTION HEADERS */
+    section h2 {
+      font-size: 50px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 60px;
+      background: linear-gradient(90deg, var(--accent2), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+        /* ANIMATION KEYFRAMES */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeUp { from { opacity:0; transform: translateY(40px); } to { opacity:1; transform: translateY(0); } }
+    @keyframes fadeLeft { from { opacity:0; transform: translateX(-40px); } to { opacity:1; transform: translateX(0); } }
+    @keyframes fadeRight { from { opacity:0; transform: translateX(40px); } to { opacity:1; transform: translateX(0); } }
+
+    /* SCROLL ANIMATION CLASSES */
+    .fade-in { opacity: 0; animation: fadeIn 1.6s ease forwards; }
+    .fade-up { opacity: 0; animation: fadeUp 1.6s ease forwards; }
+    .fade-left { opacity: 0; animation: fadeLeft 1.6s ease forwards; }
+    .fade-right { opacity: 0; animation: fadeRight 1.6s ease forwards; }
+
+    /* HERO LOAD ANIMATION */
+    .hero h1 { opacity:0; animation: fadeUp 1.6s ease forwards 0.2s; }
+    .hero p { opacity:0; animation: fadeUp 1.6s ease forwards 0.5s; }
+    .actions { opacity:0; animation: fadeUp 1.6s ease forwards 0.8s; }
+
+    /* NEON GRADIENT ANIMATION */
+    @keyframes neonGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h2, .btn-primary {
+      background-size: 200% 200%;
+      animation: neonGradient 6s ease infinite;
+    }
+</style>
+  <style>
+    /* Neon Animated Gradient Background */
+    body {
+      background: linear-gradient(-45deg, #1e0059, #32004a, #001f3f, #002f6c);
+      background-size: 400% 400%;
+      animation: gradientMove 10s ease infinite;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Scroll Fade-In Animation */
+    .fade {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+    .fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero Text Entrance */
+    .hero-title {
+      opacity: 0;
+      animation: fadeSlide 1.5s forwards ease-out;
+    }
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Footer Navigation Bar */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255,255,255,0.05);
+      margin-top: 50px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    footer a {
+      margin: 0 15px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    footer a:hover {
+      color: #00eaff;
+    }
+
+    /* Mobile Responsive Fixes */
+    @media(max-width: 768px) {
+      h1 { font-size: 2rem; }
+      .projects, .skills-section { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -361,19 +469,16 @@
   <div class="glow blue"></div>
 
   <header>
-    <div class="logo">Amin Barja </div>
+    <div class="logo">AMIN BARJA</div>
     <nav>
       <a href="#home">Home</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Projects</a>
     </nav>
   </header>
 
-  <section class="hero" id="home">
+  <section class="hero fade-in" id="home">
     <div>
       
       <h1>Hi, I'm <span>Amin Barja</span><br>Future Creative Developer</h1>
@@ -403,8 +508,7 @@
     </div>
   </section>
 
-  <section class="skills" id="skills">
-    <div class="project-grid">
+  <section class="skills fade-up" id="skills" style="max-width:1200px;margin:0 auto;padding:160px 30px;">
     <h2>My Skills</h2>
     <div class="project-grid">
       <div class="project-card"><h3>🌐 HTML</h3><p>Semantic structure, clean markup, accessibility basics.</p></div>
@@ -414,21 +518,12 @@
     </div>
   </section>
 
-  <section class="projects" id="projects">
+  <section class="projects fade-left" id="projects" style="padding-top:160px;">
     <h2>My Projects</h2>
     <div class="project-grid">
-      <div class="project-card">
-        <h3>Personal Portfolio</h3>
-        <p>A modern portfolio website built using pure HTML and CSS.</p>
-      </div>
-      <div class="project-card">
-        <h3>Practice Landing Page</h3>
-        <p>A clean landing page focusing on layout, typography, and colors.</p>
-      </div>
-      <div class="project-card">
-        <h3>Future Project</h3>
-        <p>More advanced projects coming as I continue learning web development.</p>
-      </div>
+      <div class="project-card"><h3>Personal Portfolio</h3><p>A modern portfolio website built using pure HTML and CSS.</p></div>
+      <div class="project-card"><h3>Practice Landing Page</h3><p>A clean landing page focusing on layout, typography, and colors.</p></div>
+      <div class="project-card"><h3>Future Project</h3><p>More advanced projects coming as I continue learning web development.</p></div>
     </div>
   </section>
 
@@ -442,8 +537,16 @@
     © 2025 Amin Barja · Designed with HTML & CSS
   </footer>
 
+  <script>
+    // Dark/Light Mode Toggle
+    const toggle = document.getElementById('theme-toggle');
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
 </body>
 </html>
+
 
 
 
